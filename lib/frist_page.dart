@@ -11,20 +11,68 @@ class _FristPageState extends State<FristPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.add),
-        foregroundColor: Colors.white, // 아이콘의 색상을 지정합니다.
-        backgroundColor: Colors.blue, // 버튼의 배경색을 지정합니다.
-        elevation: 0.0, // 버튼의 음영 효과의 크기를 조절합니다.
-        tooltip: '추가', // onPressed 콜백이 동작할 때 나타나는 툴팁을 정의합니다.
-        splashColor: Colors.yellow, // 누르고 있지 않을 때 나타나는 색상을 지정합니다.
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(99), // 버튼의 모양을 지정합니다.
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            showDialog(
+              context: context,
+              barrierDismissible: true, // 바깥 영역 터치시 닫을지 여부 결정
+              builder: (context) {
+                return Dialog(
+                  // 전체 다이얼로그의 모양 설정
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16.0), // 테두리
+                  ),
+                  // 내용을 구성하는 부분
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        // 다이얼로그 제목
+                        Text(
+                          '다이얼로그 제목',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 16.0),
+                        // 다이얼로그 내용
+                        Text(
+                          '다이얼로그 내용입니다. 이 부분은 여러 줄일 수 있습니다. 다이얼로그 내용입니다. 이 부분은 여러 줄일 수 있습니다. 다이얼로그 내용입니다. 이 부분은 여러 줄일 수 있습니다.',
+                          style: TextStyle(fontSize: 16.0),
+                        ),
+                        // 버튼들
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            // 취소 버튼
+                            TextButton(
+                              onPressed: () {},
+                              child: Text(
+                                '취소',
+                              ),
+                            ),
+                            // 확인 버튼
+                            TextButton(
+                              onPressed: () {},
+                              child: Text(
+                                '확인',
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            );
+          },
+          child: Text('다이얼로그 열기'),
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation
-          .endFloat, // FloatingActionButton이 화면에서 어디에 위치할지 지정합니다.
     );
   }
 }
